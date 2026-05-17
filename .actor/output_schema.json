@@ -1,0 +1,18 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "IKEA Reviews Scraper Output",
+  "properties": {
+    "overview": {
+      "type": "string",
+      "title": "Reviews Overview",
+      "description": "View product and review rows in the default overview",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+    },
+    "allItems": {
+      "type": "string",
+      "title": "All Items (JSON)",
+      "description": "Full dataset output in JSON format",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    }
+  }
+}

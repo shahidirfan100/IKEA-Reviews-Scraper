@@ -1,0 +1,71 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "productId": { "title": "Product ID", "type": "string", "description": "IKEA product ID" },
+    "productName": { "title": "Product Name", "type": "string", "description": "Resolved product name" },
+    "productUrl": { "title": "Product URL", "type": "string", "description": "Resolved product page URL" },
+    "productPrice": { "title": "Product Price", "type": "number", "description": "Current product price" },
+    "productCurrency": { "title": "Currency", "type": "string", "description": "Product currency" },
+    "totalReviewCount": { "title": "Total Review Count", "type": "integer", "description": "Total reviews from ratings endpoint" },
+    "primaryRatingValue": { "title": "Overall Rating", "type": "number", "description": "Overall rating value" },
+    "reviewId": { "title": "Review ID", "type": "string", "description": "Unique review ID" },
+    "reviewSubmissionOn": { "title": "Review Date", "type": "string", "description": "Review submission timestamp" },
+    "reviewPrimaryRatingValue": { "title": "Review Rating", "type": "number", "description": "Review rating value" },
+    "reviewTitle": { "title": "Review Title", "type": "string", "description": "Review title" },
+    "reviewText": { "title": "Review Text", "type": "string", "description": "Review body" },
+    "reviewAuthor": { "title": "Review Author", "type": "string", "description": "Review author" },
+    "reviewSourceCountryCode": { "title": "Review Country", "type": "string", "description": "Review source country" },
+    "reviewVerifiedPurchase": { "title": "Verified Purchase", "type": "boolean", "description": "Verified purchase flag" },
+    "reviewCountCollected": { "title": "Collected Reviews", "type": "integer", "description": "Total collected reviews in the run" },
+    "reviewPosition": { "title": "Review Position", "type": "integer", "description": "Position in dataset" },
+    "sortBy": { "title": "Sort By", "type": "string", "description": "Applied sort value" },
+    "scrapedAt": { "title": "Scraped At", "type": "string", "description": "ISO timestamp" }
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "description": "Flat customer reviews for one IKEA product",
+      "transformation": {
+        "fields": [
+          "productId",
+          "productName",
+          "productUrl",
+          "primaryRatingValue",
+          "totalReviewCount",
+          "reviewId",
+          "reviewSubmissionOn",
+          "reviewPrimaryRatingValue",
+          "reviewTitle",
+          "reviewAuthor",
+          "reviewSourceCountryCode",
+          "reviewVerifiedPurchase",
+          "reviewCountCollected",
+          "reviewPosition",
+          "sortBy",
+          "scrapedAt"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "productId": { "label": "Product ID", "format": "text" },
+          "productName": { "label": "Product", "format": "text" },
+          "productUrl": { "label": "URL", "format": "link" },
+          "primaryRatingValue": { "label": "Overall Rating", "format": "number" },
+          "totalReviewCount": { "label": "Total Reviews", "format": "number" },
+          "reviewId": { "label": "Review ID", "format": "text" },
+          "reviewSubmissionOn": { "label": "Date", "format": "date" },
+          "reviewPrimaryRatingValue": { "label": "Review Rating", "format": "number" },
+          "reviewTitle": { "label": "Title", "format": "text" },
+          "reviewAuthor": { "label": "Author", "format": "text" },
+          "reviewSourceCountryCode": { "label": "Country", "format": "text" },
+          "reviewVerifiedPurchase": { "label": "Verified", "format": "boolean" },
+          "reviewCountCollected": { "label": "Collected", "format": "number" },
+          "reviewPosition": { "label": "Position", "format": "number" },
+          "sortBy": { "label": "Sort", "format": "text" },
+          "scrapedAt": { "label": "Scraped At", "format": "date" }
+        }
+      }
+    }
+  }
+}
