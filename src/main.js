@@ -8,6 +8,7 @@ const DEFAULT_RESULTS_WANTED = 20;
 const DEFAULT_MAX_PAGES = 3;
 const DEFAULT_PAGE_SIZE = 20;
 const DEFAULT_SORT = 'submissionOn:desc';
+const DEFAULT_QA_URL = 'https://www.ikea.com/gb/en/p/poaeng-armchair-white-stained-oak-veneer-knisa-light-beige-s89286612/';
 const SEARCH_API_VERSION = '20250507';
 const SEARCH_CLIENT_ID = 'sr';
 const REVIEW_CLIENT_ID = 'a1047798-0fc4-446e-9616-0afe3256d0d7';
@@ -409,16 +410,20 @@ const resolveSingleProduct = async ({
     pageSize,
     proxyConfiguration,
 }) => {
+    const userUrl = toTrimmed(url);
+    const inputUrl = userUrl || DEFAULT_QA_URL;
+
     let resolvedCountry = DEFAULT_COUNTRY;
     let resolvedLanguage = DEFAULT_LANGUAGE;
     let resolvedProductId = toTrimmed(productId);
     let queryFromUrl;
 
-    if (url) {
-        const parsed = parseIkeaUrl(url, resolvedCountry, resolvedLanguage);
+    if (inputUrl) {
+        const parsed = parseIkeaUrl(inputUrl, resolvedCountry, resolvedLanguage);
         resolvedCountry = parsed.country;
         resolvedLanguage = parsed.language;
-        resolvedProductId = resolvedProductId || parsed.productId;
+        // URL always has priority over productId input/default.
+        resolvedProductId = parsed.productId || resolvedProductId;
         queryFromUrl = parsed.searchQuery;
     }
 
@@ -441,11 +446,11 @@ const resolveSingleProduct = async ({
             };
         }
 
-        log.warning(`No exact product found for productId=${resolvedProductId}. Will try keyword search fallback.`);
+        log.warning(`No exact product found for productId=${resolvedProductId}. Will try URL-slug query fallback.`);
     }
 
     if (!searchQuery) {
-        throw new Error('Provide at least one of: url or productId.');
+        throw new Error('Could not resolve product. Provide a valid IKEA product URL or productId.');
     }
 
     const products = await searchProducts({

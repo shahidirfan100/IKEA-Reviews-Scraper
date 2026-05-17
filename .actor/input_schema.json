@@ -9,6 +9,7 @@
       "type": "string",
       "description": "IKEA product URL.",
       "editor": "textfield",
+      "default": "https://www.ikea.com/gb/en/p/poaeng-armchair-white-stained-oak-veneer-knisa-light-beige-s89286612/",
       "prefill": "https://www.ikea.com/gb/en/p/poaeng-armchair-white-stained-oak-veneer-knisa-light-beige-s89286612/"
     },
     "productId": {
@@ -16,6 +17,7 @@
       "type": "string",
       "description": "IKEA product ID (8 digits).",
       "editor": "textfield",
+      "default": "89286612",
       "prefill": "89286612"
     },
     "resultsWanted": {
